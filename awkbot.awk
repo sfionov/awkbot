@@ -63,7 +63,6 @@ BEGIN {
     user(my_nick,"+",real_name)
 }
 
-# BUG
 # When connected, join channel
 $2=="001" {
     join_channel(channel_name)
