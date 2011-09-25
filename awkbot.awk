@@ -74,6 +74,11 @@ $2=="001" {
     print
 }
 
+# NickServ IDENTIFY if asked
+/NickServ/ && /IDENTIFY/ {
+    nickserv_identify(nickserv_password)
+}
+
 # CTCP PING user on join
 $2=="JOIN" {
     if ((get_nick($1)!=my_nick) && ($1!~/zarkon/))
@@ -95,11 +100,6 @@ $2=="JOIN" {
 ($2=="NOTICE") && ($4~/^:\001/) {
 # Voice user
     mode(channel_name, "+v", get_nick($1))
-}
-
-# NickServ IDENTIFY if asked
-($1~/^:NickServ/) && /IDENTIFY/ {
-    nickserv_identify(nickserv_password)
 }
 
 # Rejoin on kick
