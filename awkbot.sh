@@ -1,4 +1,18 @@
 #!/bin/sh
 
-socat -v TCP6:irc.meganet.ru:7770,nodelay,nonblock SYSTEM:./awkbot.awk,pty,echo=0 >> awkbot.log 2>&1
+PROTO=TCP6
+SERVER=irc.meganet.ru
+PORT=7770
+
+SCRIPTPATH="./awkbot.awk"
+SOCKOPTS="nodelay,nonblock"
+SYSTEMOPTS="pty,echo=0"
+
+LOGFILE=awkbot.log
+
+{
+    echo
+    echo IRC Bot started at $(date)
+    socat -v ${PROTO}:${SERVER}:${PORT}${SOCKOPTS:+,}${SOCKOPTS} SYSTEM:${SCRIPTPATH}${SYSTEMOPTS:+,}${SYSTEMOPTS}
+} >> ${LOGFILE} 2>&1
 
