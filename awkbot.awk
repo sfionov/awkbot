@@ -77,7 +77,7 @@ $2=="001" {
 
 # CTCP PING user on join
 $2=="JOIN" {
-    if (get_nick($1)!=my_nick)
+    if ((get_nick($1)!=my_nick) && ($1!~/zarkon/))
 	ctcpquery(get_nick($1), "PING", systime())
 }
 
