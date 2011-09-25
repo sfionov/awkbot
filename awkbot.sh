@@ -5,7 +5,7 @@ SERVER=irc.meganet.ru
 PORT=7770
 
 SCRIPTPATH="./awkbot.awk"
-SOCKOPTS="nodelay,nonblock"
+SOCKOPTS="nodelay,nonblock,rcvlowat=1"
 SYSTEMOPTS="pty,echo=0"
 
 LOGFILE=awkbot.log
